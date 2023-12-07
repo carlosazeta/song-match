@@ -9,10 +9,11 @@ const useSpotifyApi = (token: Token, searchValue: string) => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			setLoading(true)
 			try {
 				const response = await axios.get(
-					`https://api.spotify.com/v1/search?q=${searchValue}&type=album%2Ctrack%2Cartist&limit=5`,
+					`https://api.spotify.com/v1/search?q=${encodeURIComponent(
+						searchValue
+					)}&type=album,track,artist&limit=5`,
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,
@@ -20,17 +21,21 @@ const useSpotifyApi = (token: Token, searchValue: string) => {
 					}
 				)
 				setData(response.data)
-				setLoading(false)
 			} catch (err) {
 				setError(err as Error)
+			} finally {
 				setLoading(false)
 			}
 		}
 
-		if (token) {
+		if (searchValue.trim()) {
+			setLoading(true) // Iniciar carga solo cuando hay un valor de búsqueda
 			fetchData()
+		} else {
+			setData(null)
+			setLoading(false) // Importante establecer la carga en false cuando no hay búsqueda
 		}
-	}, [token, searchValue])
+	}, [searchValue, token])
 
 	return { data, loading, error }
 }

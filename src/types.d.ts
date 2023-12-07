@@ -1,28 +1,51 @@
 export type Token = string
 
 export interface SpotifyApiResponse {
-	total: number
-	items: SpotifyTrackItem[]
+	albums: SpotifyAlbumsResponse
+	artists: SpotifyArtistsResponse
+	tracks: SpotifyTracksResponse
 }
 
-interface SpotifyTrackItem {
-	track: Track
+interface SpotifyAlbumsResponse {
+	items: Album[]
+	// Puedes añadir aquí otros campos relevantes de la respuesta, como 'href', 'limit', etc.
 }
 
-interface Track {
-	album: Album
-	artists: Artist[]
-	name: string
-	id: string
-	preview_url: string
+interface SpotifyArtistsResponse {
+	items: Artist[]
+	// Campos adicionales según sea necesario
+}
+
+interface SpotifyTracksResponse {
+	items: Track[]
+	// Campos adicionales según sea necesario
 }
 
 interface Album {
-	images: Image[]
+	id: string
 	name: string
+	images: Image[]
 	artists: Artist[]
+	// Otros campos del álbum si es necesario
 }
 
-export interface Artist {
+interface Artist {
+	id: string
 	name: string
+	// Otros campos del artista si es necesario
+}
+
+interface Track {
+	id: string
+	name: string
+	preview_url: string
+	album: Album
+	artists: Artist[]
+	// Otros campos del track si es necesario
+}
+
+interface Image {
+	url: string
+	height: number
+	width: number
 }
