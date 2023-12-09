@@ -28,7 +28,7 @@ const useSpotifyAuth = () => {
 			})
 	}, [])
 
-	return token
+	return { token }
 }
 
 export default useSpotifyAuth

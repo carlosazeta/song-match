@@ -3,21 +3,23 @@ import './App.css'
 import Search from './components/Search'
 import SearchList from './components/SearchList'
 import useSpotifyAuth from './hooks/useSpotifyAuth'
-import useSpotifyApi from './hooks/useSpotifySearch'
+import useSpotifyApiSearch from './hooks/useSpotifySearch'
 
 function App() {
-	const [searchValue, setSearchValue] = useState<string>('')
-	const token = useSpotifyAuth()
-	const { data, loading, error } = useSpotifyApi(token, searchValue)
+	const [songSearched, setSongSearched] = useState<string>('')
 
-	console.log(data)
+	const { token } = useSpotifyAuth()
 
-	if (loading) return <p>Loading...</p>
+	const { data, loading, error } = useSpotifyApiSearch(token, songSearched)
+
+	const searchSong = (newSongSearched: string) => {
+		setSongSearched(newSongSearched)
+	}
 
 	return (
 		<>
-			<Search searchValue={searchValue} setSearchValue={setSearchValue} />
-			{!loading && data && <SearchList tracks={data.tracks.items} />}
+			<Search searchSong={searchSong} />
+			<SearchList tracks={data} />
 		</>
 	)
 }

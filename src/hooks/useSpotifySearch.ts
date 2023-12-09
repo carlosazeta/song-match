@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { SpotifyApiResponse, Token } from '../types'
+import { Token, Track } from '../types'
 
-const useSpotifyApi = (token: Token, searchValue: string) => {
-	const [data, setData] = useState<SpotifyApiResponse | null>(null)
+const useSpotifyApiSearch = (token: Token, songSearched: string) => {
+	const [data, setData] = useState<Track[] | []>([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState<Error | null>(null)
 
@@ -12,7 +12,7 @@ const useSpotifyApi = (token: Token, searchValue: string) => {
 			try {
 				const response = await axios.get(
 					`https://api.spotify.com/v1/search?q=${encodeURIComponent(
-						searchValue
+						songSearched
 					)}&type=album,track,artist&limit=5`,
 					{
 						headers: {
@@ -20,7 +20,7 @@ const useSpotifyApi = (token: Token, searchValue: string) => {
 						},
 					}
 				)
-				setData(response.data)
+				setData(response.data.tracks.items)
 			} catch (err) {
 				setError(err as Error)
 			} finally {
@@ -28,16 +28,16 @@ const useSpotifyApi = (token: Token, searchValue: string) => {
 			}
 		}
 
-		if (searchValue.trim()) {
+		if (songSearched.trim()) {
 			setLoading(true) // Iniciar carga solo cuando hay un valor de búsqueda
 			fetchData()
 		} else {
-			setData(null)
+			setData([])
 			setLoading(false) // Importante establecer la carga en false cuando no hay búsqueda
 		}
-	}, [searchValue, token])
+	}, [songSearched, token])
 
 	return { data, loading, error }
 }
 
-export default useSpotifyApi
+export default useSpotifyApiSearch
