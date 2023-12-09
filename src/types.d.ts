@@ -34,7 +34,7 @@ interface Track {
 	id: string
 	name: string
 	preview_url: string
-	album: Album
+	album: Album | string
 	artists: Artist[]
 }
 
@@ -44,8 +44,8 @@ interface Image {
 	width: number
 }
 
-interface SelectedSong {
+interface SelectedTrack {
 	id: string
 	title: string
-	coverImage: string
+	coverImage: Album | string
 }
