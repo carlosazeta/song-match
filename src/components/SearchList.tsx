@@ -15,15 +15,18 @@ function SearchList({ tracks }: SearchListProps) {
 	}
 
 	return (
-		<ul>
-			{tracks.map((track) => (
-				<SearchItemCard
-					key={track.id}
-					trackName={track.name}
-					artistName={getArtistName(track.artists)}
-				/>
-			))}
-		</ul>
+		<div className='mt-10'>
+			<ul className='list-none flex flex-col gap-4'>
+				{tracks.map((track) => (
+					<SearchItemCard
+						key={track.id}
+						trackName={track.name}
+						artistName={getArtistName(track.artists)}
+						album={track.album}
+					/>
+				))}
+			</ul>
+		</div>
 	)
 }
 

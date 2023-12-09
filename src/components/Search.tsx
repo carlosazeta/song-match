@@ -28,7 +28,12 @@ const Search: React.FC<SearchProps> = ({ searchSong }) => {
 
 	return (
 		<form onSubmit={handleOnSubmit}>
-			<input type='text' value={inputValue} onChange={handleChangeSearch} />
+			<input
+				type='text'
+				value={inputValue}
+				onChange={handleChangeSearch}
+				className='w-56'
+			/>
 			<button>Search</button>
 		</form>
 	)
