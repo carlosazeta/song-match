@@ -12,13 +12,9 @@ function App() {
 
 	const { data, loading, error } = useSpotifyApiSearch(token, songSearched)
 
-	const searchSong = (newSongSearched: string) => {
-		setSongSearched(newSongSearched)
-	}
-
 	return (
 		<>
-			<Search searchSong={searchSong} />
+			<Search searchSong={setSongSearched} />
 			<SearchList tracks={data} />
 		</>
 	)
