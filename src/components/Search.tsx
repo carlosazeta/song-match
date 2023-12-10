@@ -27,14 +27,19 @@ const Search: React.FC<SearchProps> = ({ searchSong }) => {
 	}
 
 	return (
-		<form onSubmit={handleOnSubmit}>
+		<form
+			onSubmit={handleOnSubmit}
+			className='flex flex-col items-center justify-center w-full'
+		>
 			<input
 				type='text'
 				value={inputValue}
 				onChange={handleChangeSearch}
-				className='w-56'
+				className='w-56 p-2 m-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out'
 			/>
-			<button>Search</button>
+			{/* <button className='p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300 ease-in-out'>
+				Search
+			</button> */}
 		</form>
 	)
 }

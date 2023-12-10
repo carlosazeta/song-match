@@ -47,5 +47,6 @@ interface Image {
 interface SelectedTrack {
 	id: string
 	title: string
+	artist: string
 	coverImage: Album | string
 }

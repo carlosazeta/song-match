@@ -6,6 +6,7 @@ import useSpotifyAuth from './hooks/useSpotifyAuth'
 import useSpotifyApiSearch from './hooks/useSpotifySearch'
 import { SelectedTrack } from './types'
 import SelectedTracksList from './components/SelectedTracksList'
+import Header from './components/Header'
 
 function App() {
 	const [songSearched, setSongSearched] = useState<string>('')
@@ -16,7 +17,11 @@ function App() {
 	const { data, loading, error } = useSpotifyApiSearch(token, songSearched)
 
 	const handleSelectTrack = (track: SelectedTrack) => {
-		setSelectedTracks([...selectedTracks, track])
+		if (selectedTracks.length < 10) {
+			setSelectedTracks([...selectedTracks, track])
+		} else {
+			console.log('Limite Excedido')
+		}
 	}
 
 	const deleteTrack = (id: string) => {
@@ -29,9 +34,13 @@ function App() {
 	console.log(selectedTracks)
 
 	return (
-		<div className='flex flex-col items-center justify-center min-h-screen px-4'>
-			<div className='w-full max-w-md'>
+		<div className='flex flex-col min-h-screen px-4 bg-green-300'>
+			<Header />
+			<div className='flex items-center justify-center h-1/2'>
 				<Search searchSong={setSongSearched} />
+			</div>
+
+			<div className='overflow-auto h-1/2'>
 				<SearchList tracks={data} onSelectTrack={handleSelectTrack} />
 				<SelectedTracksList tracks={selectedTracks} deleteTrack={deleteTrack} />
 			</div>

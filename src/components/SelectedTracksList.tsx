@@ -10,14 +10,27 @@ const SelectedTracksList: React.FC<SelectedTrackListProps> = ({
 	deleteTrack,
 }) => {
 	return (
-		<ul>
-			{tracks.map((track) => (
-				<div key={track.id} className='flex'>
-					<li>{track.title}</li>
-					<button onClick={() => deleteTrack(track.id)}>X</button>
-				</div>
-			))}
-		</ul>
+		<div>
+			<h4>Canciones añadidas</h4>
+			<ul className='list-none p-0 m-0'>
+				{tracks.map((track) => (
+					<li
+						key={track.id}
+						className='flex justify-between items-center p-2 border-b border-gray-300'
+					>
+						<span className='text-sm text-gray-700'>
+							{track.title} - {track.artist}
+						</span>
+						<button
+							onClick={() => deleteTrack(track.id)}
+							className='bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded'
+						>
+							X
+						</button>
+					</li>
+				))}
+			</ul>
+		</div>
 	)
 }
 

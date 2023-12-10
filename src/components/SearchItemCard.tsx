@@ -21,6 +21,7 @@ function SearchItemCard({
 		onSelectTrack({
 			id,
 			title: trackName,
+			artist: artistName,
 			coverImage: coverImageUrl,
 		})
 	}

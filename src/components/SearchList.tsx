@@ -15,17 +15,23 @@ function SearchList({ tracks, onSelectTrack }: SearchListProps) {
 		return artists.map((artist) => artist.name).join(', ')
 	}
 
-	const handleOnSelectTrack = (id: string, title: string, album: Album) => {
+	const handleOnSelectTrack = (
+		id: string,
+		title: string,
+		album: Album,
+		artist: string
+	) => {
 		onSelectTrack({
 			id,
 			title,
+			artist,
 			coverImage: album,
 		})
 	}
 
 	return (
 		<div className='mt-10'>
-			<ul className='list-none flex flex-col gap-4'>
+			<ul className='list-none flex flex-col gap-4 w-full max-w-md'>
 				{tracks.map((track) => (
 					<SearchItemCard
 						key={track.id}
@@ -34,7 +40,12 @@ function SearchList({ tracks, onSelectTrack }: SearchListProps) {
 						artistName={getArtistName(track.artists)}
 						album={track.album}
 						onSelectTrack={() =>
-							handleOnSelectTrack(track.id, track.name, track.album)
+							handleOnSelectTrack(
+								track.id,
+								track.name,
+								track.album,
+								getArtistName(track.artists)
+							)
 						}
 					/>
 				))}
