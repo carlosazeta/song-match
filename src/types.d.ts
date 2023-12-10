@@ -34,7 +34,7 @@ interface Track {
 	id: string
 	name: string
 	preview_url: string
-	album: Album | string
+	album: Album
 	artists: Artist[]
 }
 
