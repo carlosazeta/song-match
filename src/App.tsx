@@ -10,6 +10,7 @@ import Header from './components/Header'
 import Arrow from './components/Arrow'
 import RemainingTracks from './components/RemainingTracks'
 import { Toaster, toast } from 'sonner'
+import LinkToShare from './components/LinkToShare'
 function App() {
 	const [songSearched, setSongSearched] = useState<string>('')
 	const [selectedTracks, setSelectedTracks] = useState<SelectedTrack[]>([])
@@ -51,6 +52,7 @@ function App() {
 				/>
 				<SelectedTracksList tracks={selectedTracks} deleteTrack={deleteTrack} />
 			</div>
+			<LinkToShare selectedTracks={selectedTracks} />
 			<Toaster />
 		</div>
 	)
