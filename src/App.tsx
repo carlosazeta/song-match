@@ -8,6 +8,7 @@ import { SelectedTrack } from './types'
 import SelectedTracksList from './components/SelectedTracksList'
 import Header from './components/Header'
 import Arrow from './components/Arrow'
+import RemainingTracks from './components/RemainingTracks'
 
 function App() {
 	const [songSearched, setSongSearched] = useState<string>('')
@@ -36,6 +37,7 @@ function App() {
 		<div className='flex flex-col min-h-screen px-4 bg-green-300'>
 			<Header />
 			<Arrow />
+			<RemainingTracks selectedTracks={selectedTracks} />
 			<div className='flex items-center justify-center h-1/2'>
 				<Search searchSong={setSongSearched} />
 			</div>
