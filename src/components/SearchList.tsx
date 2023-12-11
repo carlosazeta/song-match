@@ -3,14 +3,17 @@ import SearchItemCard from './SearchItemCard'
 
 type SearchListProps = {
 	tracks: Track[]
+	selectedTracks: SelectedTrack[]
 	onSelectTrack: (track: SelectedTrack) => void
+	setSongSearched: (newSongSearched: string) => void
 }
 
-function SearchList({ tracks, onSelectTrack }: SearchListProps) {
-	if (!tracks || tracks.length === 0) {
-		return <p>No hay resultados para mostrar.</p>
-	}
-
+function SearchList({
+	tracks,
+	selectedTracks,
+	onSelectTrack,
+	setSongSearched,
+}: SearchListProps) {
 	const getArtistName = (artists: Artist[]): string => {
 		return artists.map((artist) => artist.name).join(', ')
 	}
@@ -47,6 +50,8 @@ function SearchList({ tracks, onSelectTrack }: SearchListProps) {
 								getArtistName(track.artists)
 							)
 						}
+						selectedTracks={selectedTracks}
+						setSongSearched={setSongSearched}
 					/>
 				))}
 			</ul>

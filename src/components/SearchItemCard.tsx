@@ -1,11 +1,13 @@
 import { Album, SelectedTrack } from '../types'
-
+import { toast } from 'sonner'
 type SearchItemCardProps = {
 	id: string
 	trackName: string
 	artistName: string
 	album: Album
+	selectedTracks: SelectedTrack[]
 	onSelectTrack: (track: SelectedTrack) => void
+	setSongSearched: (newSongSearched: string) => void
 }
 
 function SearchItemCard({
@@ -13,17 +15,28 @@ function SearchItemCard({
 	trackName,
 	artistName,
 	album,
+	selectedTracks,
 	onSelectTrack,
+	setSongSearched,
 }: SearchItemCardProps) {
 	const coverImageUrl = album.images[2]?.url
 
+	const checkRepeatedTrack = selectedTracks.some(
+		(selectedTrack) => selectedTrack.id === id
+	)
 	const handleOnSelectTrack = () => {
-		onSelectTrack({
-			id,
-			title: trackName,
-			artist: artistName,
-			coverImage: coverImageUrl,
-		})
+		if (checkRepeatedTrack) {
+			toast(`This song is already on your list`)
+			return
+		} else {
+			onSelectTrack({
+				id,
+				title: trackName,
+				artist: artistName,
+				coverImage: coverImageUrl,
+			})
+			setSongSearched('')
+		}
 	}
 
 	return (

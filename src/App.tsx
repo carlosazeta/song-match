@@ -9,7 +9,7 @@ import SelectedTracksList from './components/SelectedTracksList'
 import Header from './components/Header'
 import Arrow from './components/Arrow'
 import RemainingTracks from './components/RemainingTracks'
-
+import { Toaster, toast } from 'sonner'
 function App() {
 	const [songSearched, setSongSearched] = useState<string>('')
 	const [selectedTracks, setSelectedTracks] = useState<SelectedTrack[]>([])
@@ -19,10 +19,10 @@ function App() {
 	const { data, loading, error } = useSpotifyApiSearch(token, songSearched)
 
 	const handleSelectTrack = (track: SelectedTrack) => {
-		if (selectedTracks.length < 10) {
+		if (selectedTracks.length < 5) {
 			setSelectedTracks([...selectedTracks, track])
 		} else {
-			console.log('Limite Excedido')
+			toast(`You have already added all the songs needed!`)
 		}
 	}
 
@@ -39,13 +39,19 @@ function App() {
 			<Arrow />
 			<RemainingTracks selectedTracks={selectedTracks} />
 			<div className='flex items-center justify-center h-1/2'>
-				<Search searchSong={setSongSearched} />
+				<Search searchSong={setSongSearched} selectedTracks={selectedTracks} />
 			</div>
 
 			<div className='overflow-auto h-1/2'>
-				<SearchList tracks={data} onSelectTrack={handleSelectTrack} />
+				<SearchList
+					tracks={data}
+					onSelectTrack={handleSelectTrack}
+					selectedTracks={selectedTracks}
+					setSongSearched={setSongSearched}
+				/>
 				<SelectedTracksList tracks={selectedTracks} deleteTrack={deleteTrack} />
 			</div>
+			<Toaster />
 		</div>
 	)
 }

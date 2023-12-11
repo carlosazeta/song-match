@@ -1,11 +1,13 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import debounce from 'just-debounce-it'
+import { SelectedTrack } from '../types'
 
 interface SearchProps {
 	searchSong: (newSongSearched: string) => void
+	selectedTracks: SelectedTrack[]
 }
 
-const Search: React.FC<SearchProps> = ({ searchSong }) => {
+const Search: React.FC<SearchProps> = ({ searchSong, selectedTracks }) => {
 	const [inputValue, setInputValue] = useState('')
 
 	const debouncedSearch = useCallback(
@@ -14,6 +16,10 @@ const Search: React.FC<SearchProps> = ({ searchSong }) => {
 		}, 300),
 		[]
 	)
+
+	useEffect(() => {
+		setInputValue('')
+	}, [selectedTracks])
 
 	const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newSearchTerm = e.target.value
@@ -38,9 +44,6 @@ const Search: React.FC<SearchProps> = ({ searchSong }) => {
 				placeholder='Search a song...'
 				className='w-60 p-2 m-2 border border-gray-300 rounded-full focus:outline-none focus:border-green-500 transition duration-300 ease-in-out'
 			/>
-			{/* <button className='p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300 ease-in-out'>
-				Search
-			</button> */}
 		</form>
 	)
 }
