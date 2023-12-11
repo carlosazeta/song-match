@@ -7,6 +7,7 @@ import useSpotifyApiSearch from './hooks/useSpotifySearch'
 import { SelectedTrack } from './types'
 import SelectedTracksList from './components/SelectedTracksList'
 import Header from './components/Header'
+import Arrow from './components/Arrow'
 
 function App() {
 	const [songSearched, setSongSearched] = useState<string>('')
@@ -31,11 +32,10 @@ function App() {
 		setSelectedTracks(newSelectedTracks)
 	}
 
-	console.log(selectedTracks)
-
 	return (
 		<div className='flex flex-col min-h-screen px-4 bg-green-300'>
 			<Header />
+			<Arrow />
 			<div className='flex items-center justify-center h-1/2'>
 				<Search searchSong={setSongSearched} />
 			</div>

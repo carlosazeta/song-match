@@ -31,7 +31,7 @@ function SearchList({ tracks, onSelectTrack }: SearchListProps) {
 
 	return (
 		<div className='mt-10'>
-			<ul className='list-none flex flex-col gap-4 w-full max-w-md'>
+			<ul className='list-none flex flex-col gap-3 w-full max-w-md'>
 				{tracks.map((track) => (
 					<SearchItemCard
 						key={track.id}

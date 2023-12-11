@@ -28,7 +28,7 @@ function SearchItemCard({
 
 	return (
 		<li
-			className='flex gap-4 items-center bg-violet-500 cursor-pointer'
+			className='flex gap-3 items-center bg-green-200 cursor-pointer rounded-r-lg'
 			onClick={handleOnSelectTrack}
 		>
 			<img
