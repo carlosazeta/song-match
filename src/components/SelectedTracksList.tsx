@@ -1,4 +1,5 @@
 import { SelectedTrack } from '../types'
+import DeleteSVG from '../assets/delete.svg'
 
 interface SelectedTrackListProps {
 	tracks: SelectedTrack[]
@@ -21,11 +22,8 @@ const SelectedTracksList: React.FC<SelectedTrackListProps> = ({
 						<span className='text-sm text-gray-700'>
 							{track.title} - {track.artist}
 						</span>
-						<button
-							onClick={() => deleteTrack(track.id)}
-							className='bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-1 px-2 border border-green-500 hover:border-transparent rounded'
-						>
-							X
+						<button onClick={() => deleteTrack(track.id)}>
+							<img className='w-8' src={DeleteSVG} alt='' />
 						</button>
 					</li>
 				))}
