@@ -11,7 +11,7 @@ const SelectedTracksList: React.FC<SelectedTrackListProps> = ({
 	deleteTrack,
 }) => {
 	return (
-		<div className='pt-4 px-4'>
+		<div className='pt-4 px-4 max-w-md mx-auto lg:max-w-xl'>
 			<h4 className='text-center text-xl'>Songs added to your list</h4>
 			<ul className='list-none pt-4 m-0'>
 				{tracks.map((track) => (

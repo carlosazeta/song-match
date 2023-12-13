@@ -1,6 +1,6 @@
 import TrackCard from './TrackCard'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { useParams } from 'react-router-dom' // A
+import { useParams } from 'react-router-dom'
 import useSpotifyAuth from '../hooks/useSpotifyAuth'
 import useSpotifyGetTracksData from '../hooks/useSpotifyGetTracksData'
 import CircleReveal from './CircleReveal'

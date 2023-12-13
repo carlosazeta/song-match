@@ -32,7 +32,6 @@ const LinkToShare: React.FC<LinkToShareProps> = ({ selectedTracks }) => {
 		navigator.clipboard.writeText(link).then(
 			() => {
 				toast('Link copied to clipboard!')
-				// Aquí puedes manejar una notificación o un cambio de estado para indicar al usuario que el enlace ha sido copiado
 			},
 			(err) => {
 				console.error('Failed to copy link: ', err)
@@ -41,21 +40,23 @@ const LinkToShare: React.FC<LinkToShareProps> = ({ selectedTracks }) => {
 	}
 
 	return (
-		<div className='flex items-center gap-2 px-4 pt-6'>
-			<input
-				type='text'
-				value={link}
-				readOnly
-				className='p-2 border border-gray-300 rounded-lg w-full'
-			/>
-			<button
-				onClick={copyToClipboard}
-				className='bg-gray-100 hover:bg-gray-200 text-white font-bold py-1 px-2 rounded'
-			>
-				<span role='img' aria-label='copy'>
-					<img className='w-8 h-8' src={copySVG} alt='' />
-				</span>
-			</button>
+		<div className='flex justify-center'>
+			<div className='flex items-center gap-2 px-4 pt-6 max-w-md'>
+				<input
+					type='text'
+					value={link}
+					readOnly
+					className='p-2 border border-gray-300 rounded-lg w-full'
+				/>
+				<button
+					onClick={copyToClipboard}
+					className='bg-gray-100 hover:bg-gray-200 text-white font-bold py-1 px-2 rounded'
+				>
+					<span role='img' aria-label='copy'>
+						<img className='w-8 h-8' src={copySVG} alt='' />
+					</span>
+				</button>
+			</div>
 		</div>
 	)
 }

@@ -35,7 +35,7 @@ const useSpotifyGetTracksData = (token: Token, trackIds: string[]) => {
 			}
 		}
 
-		setLoading(true) // Iniciar carga antes de la solicitud
+		setLoading(true)
 		fetchData()
 	}, [trackIds, token])
 

@@ -29,11 +29,11 @@ const useSpotifyApiSearch = (token: Token, songSearched: string) => {
 		}
 
 		if (songSearched.trim()) {
-			setLoading(true) // Iniciar carga solo cuando hay un valor de búsqueda
+			setLoading(true)
 			fetchData()
 		} else {
 			setData([])
-			setLoading(false) // Importante establecer la carga en false cuando no hay búsqueda
+			setLoading(false)
 		}
 	}, [songSearched, token])
 
