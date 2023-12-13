@@ -33,7 +33,7 @@ function SearchList({
 	}
 
 	return (
-		<div className='mt-10'>
+		<div className='mt-10 px-4'>
 			<ul className='list-none flex flex-col gap-3 w-full max-w-md'>
 				{tracks.map((track) => (
 					<SearchItemCard

@@ -1,7 +1,5 @@
 import TrackCard from './TrackCard'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { useEffect, useState } from 'react'
-
 import { useParams } from 'react-router-dom' // A
 import useSpotifyAuth from '../hooks/useSpotifyAuth'
 import useSpotifyGetTracksData from '../hooks/useSpotifyGetTracksData'
@@ -12,7 +10,7 @@ import useSwipeScore from '../hooks/useSwipe'
 import useFirestoreData from '../hooks/useFirestoreData'
 
 const ListOfTracks = () => {
-	const { docId } = useParams() // Obtiene el ID del documento de la URL
+	const { docId } = useParams()
 
 	const { token } = useSpotifyAuth()
 
@@ -34,9 +32,6 @@ const ListOfTracks = () => {
 
 	if (loading) return <LoadingMatchCard />
 	if (error) return <p>{error.message}</p>
-
-	console.log(data.length)
-	console.log(currentIndex)
 
 	return (
 		<>

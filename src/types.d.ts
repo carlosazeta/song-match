@@ -36,7 +36,7 @@ interface SelectedTrack {
 export type Score = number
 
 interface ScoreMessages {
-	[key: number]: string
+	[key: number]: string[]
 }
 
 interface ScoreMessageProps {

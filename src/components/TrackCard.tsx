@@ -21,8 +21,10 @@ const TrackCard = ({ trackData }: { trackData: Track }) => {
 				src={trackData.album.images[1].url}
 				alt=''
 			/>
-			<p>{trackData.name}</p>
-			<p className='max-w-[200px] mx-auto overflow-hidden text-ellipsis whitespace-nowrap'>
+			<p className='max-w-[300px] mx-auto overflow-hidden text-ellipsis whitespace-nowrap mt-4'>
+				{trackData.name}
+			</p>
+			<p className='max-w-[300px] mx-auto overflow-hidden text-ellipsis whitespace-nowrap'>
 				{getArtistNames(trackData.artists)}
 			</p>
 			<div>

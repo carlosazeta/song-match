@@ -1,18 +1,18 @@
 import { useState } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Toaster, toast } from 'sonner'
 import './App.css'
-import Search from './components/Search'
-import SearchList from './components/SearchList'
+import { SelectedTrack } from './types'
 import useSpotifyAuth from './hooks/useSpotifyAuth'
 import useSpotifyApiSearch from './hooks/useSpotifySearch'
-import { SelectedTrack } from './types'
+import Search from './components/Search'
+import SearchList from './components/SearchList'
 import SelectedTracksList from './components/SelectedTracksList'
 import Header from './components/Header'
 import Arrow from './components/Arrow'
 import RemainingTracks from './components/RemainingTracks'
-import { Toaster, toast } from 'sonner'
 import LinkToShare from './components/LinkToShare'
 import ListOfTracks from './components/ListOfTracks'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 function App() {
 	const [songSearched, setSongSearched] = useState<string>('')
@@ -60,10 +60,12 @@ function App() {
 									selectedTracks={selectedTracks}
 									setSongSearched={setSongSearched}
 								/>
-								<SelectedTracksList
-									tracks={selectedTracks}
-									deleteTrack={deleteTrack}
-								/>
+								{!!selectedTracks.length && (
+									<SelectedTracksList
+										tracks={selectedTracks}
+										deleteTrack={deleteTrack}
+									/>
+								)}
 							</div>
 							{selectedTracks.length === 5 && (
 								<LinkToShare selectedTracks={selectedTracks} />
