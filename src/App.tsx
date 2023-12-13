@@ -52,7 +52,9 @@ function App() {
 				/>
 				<SelectedTracksList tracks={selectedTracks} deleteTrack={deleteTrack} />
 			</div>
-			<LinkToShare selectedTracks={selectedTracks} />
+			{selectedTracks.length === 5 && (
+				<LinkToShare selectedTracks={selectedTracks} />
+			)}
 			<Toaster />
 		</div>
 	)

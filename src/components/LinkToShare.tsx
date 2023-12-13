@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { collection, addDoc } from 'firebase/firestore'
+import db from '../firebaseConfig'
 import { SelectedTrack } from '../types'
 
 interface LinkToShareProps {
@@ -9,10 +11,20 @@ const LinkToShare: React.FC<LinkToShareProps> = ({ selectedTracks }) => {
 	const [link, setLink] = useState<string>('')
 
 	useEffect(() => {
-		const ids = selectedTracks
-			.map((selectedTrack: SelectedTrack) => selectedTrack.id)
-			.join(',')
-		setLink(`http://localhost:5173/${ids}`)
+		if (selectedTracks.length === 5) {
+			const saveTracks = async () => {
+				try {
+					const docRef = await addDoc(collection(db, 'tracks'), {
+						ids: selectedTracks.map((track) => track.id),
+					})
+					setLink(`http://localhost:5173/tracks/${docRef.id}`)
+				} catch (error) {
+					console.error('Error adding document: ', error)
+				}
+			}
+
+			saveTracks()
+		}
 	}, [selectedTracks])
 
 	const copyToClipboard = () => {
