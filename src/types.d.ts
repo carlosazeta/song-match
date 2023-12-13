@@ -50,3 +50,13 @@ interface SelectedTrack {
 	artist: string
 	coverImage: Album | string
 }
+
+export type Score = number
+
+interface ScoreMessages {
+	[key: number]: string
+}
+
+interface ScoreMessageProps {
+	score: Score
+}

@@ -11,6 +11,9 @@ import Arrow from './components/Arrow'
 import RemainingTracks from './components/RemainingTracks'
 import { Toaster, toast } from 'sonner'
 import LinkToShare from './components/LinkToShare'
+import ListOfTracks from './components/ListOfTracks'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
 function App() {
 	const [songSearched, setSongSearched] = useState<string>('')
 	const [selectedTracks, setSelectedTracks] = useState<SelectedTrack[]>([])
@@ -35,28 +38,45 @@ function App() {
 	}
 
 	return (
-		<div className='flex flex-col min-h-screen px-4 bg-green-300'>
-			<Header />
-			<Arrow />
-			<RemainingTracks selectedTracks={selectedTracks} />
-			<div className='flex items-center justify-center h-1/2'>
-				<Search searchSong={setSongSearched} selectedTracks={selectedTracks} />
+		<Router>
+			<div className='flex flex-col min-h-screen px-4 bg-green-300'>
+				<Routes>
+					<Route
+						path='/'
+						element={
+							<>
+								<Header />
+								<Arrow />
+								<RemainingTracks selectedTracks={selectedTracks} />
+								<div className='flex items-center justify-center h-1/2'>
+									<Search
+										searchSong={setSongSearched}
+										selectedTracks={selectedTracks}
+									/>
+								</div>
+								<div className='overflow-auto h-1/2'>
+									<SearchList
+										tracks={data}
+										onSelectTrack={handleSelectTrack}
+										selectedTracks={selectedTracks}
+										setSongSearched={setSongSearched}
+									/>
+									<SelectedTracksList
+										tracks={selectedTracks}
+										deleteTrack={deleteTrack}
+									/>
+								</div>
+								{selectedTracks.length === 5 && (
+									<LinkToShare selectedTracks={selectedTracks} />
+								)}
+							</>
+						}
+					/>
+					<Route path='/tracks/:docId' element={<ListOfTracks />} />
+				</Routes>
+				<Toaster />
 			</div>
-
-			<div className='overflow-auto h-1/2'>
-				<SearchList
-					tracks={data}
-					onSelectTrack={handleSelectTrack}
-					selectedTracks={selectedTracks}
-					setSongSearched={setSongSearched}
-				/>
-				<SelectedTracksList tracks={selectedTracks} deleteTrack={deleteTrack} />
-			</div>
-			{selectedTracks.length === 5 && (
-				<LinkToShare selectedTracks={selectedTracks} />
-			)}
-			<Toaster />
-		</div>
+		</Router>
 	)
 }
 
