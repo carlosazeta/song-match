@@ -1,4 +1,4 @@
-const Loading: React.FC = () => {
+const LoadingMatchCard: React.FC = () => {
 	return (
 		<div className='flex justify-center items-center min-h-screen'>
 			<div className='animate-pulse flex flex-col items-center gap-4 w-60'>
@@ -15,4 +15,4 @@ const Loading: React.FC = () => {
 	)
 }
 
-export default Loading
+export default LoadingMatchCard

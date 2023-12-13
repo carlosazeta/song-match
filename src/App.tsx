@@ -39,43 +39,41 @@ function App() {
 
 	return (
 		<Router>
-			<div className='flex flex-col min-h-screen px-4 bg-green-300'>
-				<Routes>
-					<Route
-						path='/'
-						element={
-							<>
-								<Header />
-								<Arrow />
-								<RemainingTracks selectedTracks={selectedTracks} />
-								<div className='flex items-center justify-center h-1/2'>
-									<Search
-										searchSong={setSongSearched}
-										selectedTracks={selectedTracks}
-									/>
-								</div>
-								<div className='overflow-auto h-1/2'>
-									<SearchList
-										tracks={data}
-										onSelectTrack={handleSelectTrack}
-										selectedTracks={selectedTracks}
-										setSongSearched={setSongSearched}
-									/>
-									<SelectedTracksList
-										tracks={selectedTracks}
-										deleteTrack={deleteTrack}
-									/>
-								</div>
-								{selectedTracks.length === 5 && (
-									<LinkToShare selectedTracks={selectedTracks} />
-								)}
-							</>
-						}
-					/>
-					<Route path='/tracks/:docId' element={<ListOfTracks />} />
-				</Routes>
-				<Toaster />
-			</div>
+			<Routes>
+				<Route
+					path='/'
+					element={
+						<div className='flex flex-col min-h-screen bg-green-300'>
+							<Header />
+							<Arrow />
+							<RemainingTracks selectedTracks={selectedTracks} />
+							<div className='flex items-center justify-center h-1/2'>
+								<Search
+									searchSong={setSongSearched}
+									selectedTracks={selectedTracks}
+								/>
+							</div>
+							<div className='overflow-auto h-1/2'>
+								<SearchList
+									tracks={data}
+									onSelectTrack={handleSelectTrack}
+									selectedTracks={selectedTracks}
+									setSongSearched={setSongSearched}
+								/>
+								<SelectedTracksList
+									tracks={selectedTracks}
+									deleteTrack={deleteTrack}
+								/>
+							</div>
+							{selectedTracks.length === 5 && (
+								<LinkToShare selectedTracks={selectedTracks} />
+							)}
+						</div>
+					}
+				/>
+				<Route path='/tracks/:docId' element={<ListOfTracks />} />
+			</Routes>
+			<Toaster />
 		</Router>
 	)
 }

@@ -6,6 +6,9 @@ import db from '../firebaseConfig'
 import { useParams } from 'react-router-dom' // A
 import useSpotifyAuth from '../hooks/useSpotifyAuth'
 import useSpotifyGetTracksData from '../hooks/useSpotifyGetTracksData'
+import CircleReveal from './CircleReveal'
+import ResultMessage from './ResultMessage'
+import LoadingMatchCard from './LoadingMatchCard'
 
 const ListOfTracks = () => {
 	const [currentIndex, setCurrentIndex] = useState(0)
@@ -74,27 +77,34 @@ const ListOfTracks = () => {
 		fetchTracks()
 	}, [docId])
 
-	console.log(data)
+	if (loading) return <LoadingMatchCard />
+	if (error) return <p>{error.message}</p>
 
 	return (
 		<>
-			<div>
-				<motion.div
-					style={{ background }}
-					className='min-h-screen min-w-full flex flex-col justify-center items-center'
-				>
-					<div className='border-4 rounded-md p-4 mt-14'>
-						<motion.div
-							drag='x'
-							dragConstraints={{ left: 0, right: 0 }}
-							style={{ x, rotate }}
-							onDragEnd={handleDragEnd}
-						>
-							{data.length > 0 && <TrackCard trackData={data[currentIndex]} />}
-						</motion.div>
-					</div>
-				</motion.div>
-			</div>
+			{data.length <= currentIndex ? (
+				<CircleReveal>
+					<ResultMessage score={score} />
+				</CircleReveal>
+			) : (
+				<div>
+					<motion.div
+						style={{ background }}
+						className='min-h-screen min-w-full flex flex-col justify-center items-center'
+					>
+						<div className='border-4 rounded-md p-4 mt-14'>
+							<motion.div
+								drag='x'
+								dragConstraints={{ left: 0, right: 0 }}
+								style={{ x, rotate }}
+								onDragEnd={handleDragEnd}
+							>
+								<TrackCard trackData={data[currentIndex]} />
+							</motion.div>
+						</div>
+					</motion.div>
+				</div>
+			)}
 		</>
 	)
 }

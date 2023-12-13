@@ -1,23 +1,5 @@
 export type Token = string
 
-export interface SpotifyApiResponse {
-	albums: SpotifyAlbumsResponse
-	artists: SpotifyArtistsResponse
-	tracks: SpotifyTracksResponse
-}
-
-interface SpotifyAlbumsResponse {
-	items: Album[]
-}
-
-interface SpotifyArtistsResponse {
-	items: Artist[]
-}
-
-interface SpotifyTracksResponse {
-	items: Track[]
-}
-
 interface Album {
 	id: string
 	name: string
