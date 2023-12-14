@@ -40,7 +40,7 @@ const LinkToShare: React.FC<LinkToShareProps> = ({ selectedTracks }) => {
 	}
 
 	return (
-		<div className='flex justify-center'>
+		<div className='flex justify-center mb-8'>
 			<div className='flex items-center gap-2 px-4 pt-6 max-w-md'>
 				<input
 					type='text'
