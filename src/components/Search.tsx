@@ -42,7 +42,7 @@ const Search: React.FC<SearchProps> = ({ searchSong, selectedTracks }) => {
 				value={inputValue}
 				onChange={handleChangeSearch}
 				placeholder='Search a song...'
-				className='w-60 p-2 m-2 border border-gray-300 rounded-full focus:outline-none focus:border-green-500 transition duration-300 ease-in-out'
+				className='w-60 p-2 m-2 border border-gray-300 rounded-full focus:outline-none focus:border-green-400 transition duration-300 ease-in-out'
 			/>
 		</form>
 	)

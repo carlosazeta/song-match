@@ -14,9 +14,13 @@ const ListOfTracks = () => {
 
 	const { token } = useSpotifyAuth()
 
-	const { trackIds } = useFirestoreData(docId)
+	const { trackIds, isLoading: isLoadingFirestore } = useFirestoreData(docId)
 
-	const { data, loading, error } = useSpotifyGetTracksData(token, trackIds)
+	const {
+		data,
+		loading: isLoadingSpotify,
+		error,
+	} = useSpotifyGetTracksData(token, trackIds)
 
 	const { currentIndex, score, handleDragEnd } = useSwipeScore(0, data.length)
 
@@ -30,7 +34,9 @@ const ListOfTracks = () => {
 
 	const rotate = useTransform(x, [-100, 100], [-10, 10])
 
-	if (loading) return <LoadingMatchCard />
+	if (isLoadingFirestore || isLoadingSpotify) {
+		return <LoadingMatchCard />
+	}
 	if (error) return <p>{error.message}</p>
 
 	return (

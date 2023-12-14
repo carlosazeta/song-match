@@ -43,7 +43,7 @@ function App() {
 				<Route
 					path='/'
 					element={
-						<div className='flex flex-col min-h-screen bg-green-300'>
+						<div className='flex flex-col min-h-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-300 to-violet-400'>
 							<Header />
 							<Arrow />
 							<RemainingTracks selectedTracks={selectedTracks} />

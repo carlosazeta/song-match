@@ -1,6 +1,6 @@
 const LoadingMatchCard: React.FC = () => {
 	return (
-		<div className='flex justify-center items-center min-h-screen'>
+		<div className='flex justify-center items-center min-h-screen bg-violet-600'>
 			<div className='animate-pulse flex flex-col items-center gap-4 w-60'>
 				<div>
 					<div className='w-48 h-6 bg-slate-400 rounded-md'></div>

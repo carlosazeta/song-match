@@ -1,0 +1,34 @@
+@keyframes popIn {
+	0% {
+		transform: scale(0.5);
+		opacity: 0;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.animate-popIn {
+	animation: popIn 1s ease-out;
+}
+
+@keyframes highlight {
+	from {
+		background-size: 0% 100%;
+	}
+	to {
+		background-size: 100% 100%;
+	}
+}
+
+.highlight {
+	display: inline;
+	background: linear-gradient(
+		to right,
+		rgba(187, 255, 1, 0.523),
+		rgba(187, 255, 1, 0.523)
+	);
+	padding: 0.4em 0.7em;
+	background-repeat: no-repeat;
+}
